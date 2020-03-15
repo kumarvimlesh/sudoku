@@ -1,11 +1,13 @@
 function solve_sudoku(){
 	//enabling the input where sudoku needs to fill for solving
-    for(var i=1;i<=81;i++){
-    	if(arr[i-1]!=0)
+    for(var i=0;i<81;i++){
+    	if(arr[i]!=0)
     		continue;
+      else{
         idname="cell-"+i;
         var getid=document.getElementById(idname);
         getid.disabled=false;
+      }
 	}
 
 
