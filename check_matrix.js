@@ -9,13 +9,17 @@ function check_matrix(){
             flag=0;
             l=0,m=0;
             for(m=0;m<j;m++){
-                if(matrix[i][j]==matrix[i][m])
+                if(matrix[i][j]==matrix[i][m]){
+                	alert("i="+i+" j="+j);
                     flag++;
+                }
             }
             //checking for same number in column
             for(l=0;l<i;l++){
-                if(matrix[i][j]==matrix[l][j])
+                if(matrix[i][j]==matrix[l][j]){
+                	alert("i="+i+" j="+j);
                     flag++;
+                }
             }
             //checking for same number in block
             if(i>=0 && i<=2)
@@ -32,8 +36,10 @@ function check_matrix(){
                 m=6;
             for(x=l;x<i;x++)
                 for(y=m;y<j;y++){
-                    if(matrix[i][j]==matrix[x][y])
+                    if(matrix[i][j]==matrix[x][y]){
+                    	alert("i="+i+" j="+j);
                         flag++;
+                    }
                 }
             console.log("\nflag="+flag);
             if(flag){

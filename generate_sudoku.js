@@ -64,7 +64,7 @@ function generate_sudoku(){
         }
     }
     //non diagonal matrixes
-    for(i=0;i<9;i++){
+    /*for(i=0;i<9;i++){
         for(j=0;j<9;j++){
             console.log("i="+i+" j="+j);
             random_number=1;
@@ -80,6 +80,8 @@ function generate_sudoku(){
                 var flag=0;
                 var l=0,m=0;
                 for(m=0;m<9;m++){
+                    if(matrix[i][m]==0 || m==j)
+                        continue;
                     console.log("x="+i+" y="+m);
                     console.log("matrix[x][y]="+matrix[i][m]);
                     if(matrix[i][j]==matrix[i][m])
@@ -87,7 +89,9 @@ function generate_sudoku(){
                 }
                 console.log("flag after row check = "+flag);
                 //checking for same number in column
-                for(l=0;l<i;l++){
+                for(l=0;l<9;l++){
+                    if(matrix[l][j]==0 || l==i)
+                        continue;
                     console.log("x="+l+" y="+j);
                     console.log("matrix[x][y]="+matrix[l][j]);
                     if(matrix[i][j]==matrix[l][j])
@@ -107,7 +111,7 @@ function generate_sudoku(){
                     m=3;
                 if(j>=6 && j<=8)
                     m=6;
-                for(x=l;x<=i;x++)
+                for(x=l;x<i;x++)
                     for(y=m;y<m+3;y++){
                         if(x>=i && y>=j)
                             break;
@@ -124,6 +128,6 @@ function generate_sudoku(){
                 console.log("while is end");
             }
         }
-    }
+    }*/
     update_frontend();
 }
