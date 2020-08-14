@@ -1,53 +1,86 @@
-function check_matrix(){
-	console.log(matrix);
-	//check if sudoku matrix is true or false 
-    for(i=0;i<9;i++){
-        for(j=0;j<9;j++){
-            console.log("i="+i+" j="+j);
-            console.log("\nmatrix[i][j]="+matrix[i][j]);
-            //checking for same number in row
+
+function check_matrix() {
+    var submit_arr = new Array(81);
+    for(var i=0;i<81;i++){
+        idname="cell-"+i;
+        var getid=document.getElementById(idname);
+        submit_arr[i]=getid.value;
+    }
+    //console.log(submit_arr);
+    var check_matrix = new Array(9);
+    for(var i=0;i<9;i++)
+        check_matrix[i]=new Array(9);
+    var k=0;
+    for(var i=0;i<9;i++){
+        for(var j=0;j<9;j++){
+            check_matrix[i][j]=parseInt(submit_arr[k]);
+            k++;
+        }
+    }
+
+    console.log("check_matrix");
+    console.log(check_matrix);
+
+    //checking for correct solution
+    var flag = 1;
+    //checking for row
+    for(var i=0;i<9;i++){
+        var zero_arr = Array(0,0,0,0,0,0,0,0,0);
+        var count=0;
+        for(var j=0;j<9;j++){
+            if(zero_arr[check_matrix[i][j]-1]==0){
+                count++;
+                zero_arr[check_matrix[i][j]-1]=1;
+            }
+        }
+        if(count!=9){
             flag=0;
-            l=0,m=0;
-            for(m=0;m<j;m++){
-                if(matrix[i][j]==matrix[i][m]){
-                	alert("i="+i+" j="+j);
-                    flag++;
-                }
+            break;
+        }
+    }
+    //checking for coulumn
+    for(var i=0;i<9;i++){
+        var zero_arr = Array(0,0,0,0,0,0,0,0,0);
+        var count=0;
+        for(var j=0;j<9;j++){
+            if(zero_arr[check_matrix[j][i]-1]==0){
+                count++;
+                zero_arr[check_matrix[j][i]-1]=1;
             }
-            //checking for same number in column
-            for(l=0;l<i;l++){
-                if(matrix[i][j]==matrix[l][j]){
-                	alert("i="+i+" j="+j);
-                    flag++;
-                }
-            }
-            //checking for same number in block
-            if(i>=0 && i<=2)
-                l=0;
-            if (i>=3 && i<=5)
-                l=3;
-            if(i>=6 && i<=8)
-                l=6;
-            if(j>=0 && j<=2)
-                m=0;
-            if (j>=3 && j<=5)
-                m=3;
-            if(j>=6 && j<=8)
-                m=6;
-            for(x=l;x<i;x++)
-                for(y=m;y<j;y++){
-                    if(matrix[i][j]==matrix[x][y]){
-                    	alert("i="+i+" j="+j);
-                        flag++;
+        }
+        if(count!=9){
+            flag=0;
+            break;
+        }
+    }
+    //checking for each box
+    for(var i=0;i<9;i=i+3){
+        for(var j=0;j<9;j=j+3){
+            var zero_arr = Array(0,0,0,0,0,0,0,0,0);
+            var count=0;
+            for(var x=i;x<i+3;x++){
+                for(var y=j;y<j+3;y++){
+                    if(zero_arr[check_matrix[j][i]-1]==0){
+                       count++;
+                       zero_arr[check_matrix[j][i]-1]=1;
                     }
                 }
-            console.log("\nflag="+flag);
-            if(flag){
-                alert("wrong solution");
+            }
+            if(count!=9){
+                flag=0;
                 break;
             }
         }
-        if(flag)
-        	break;
+        if(count!=9){
+            flag=0;
+            break;
+        }
+    }
+
+    if (flag) {
+        alert("correct");
+    }
+    else{
+        alert("wrong");
     }
 }

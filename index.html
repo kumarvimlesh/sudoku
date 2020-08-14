@@ -20,20 +20,22 @@
     }
     .buttons{
       margin-top: 20px;
-      margin-left: 29.5%;
+      margin-left: 29%;
     }
     .btn{
-      height: 50px;
-      width: 29%;
+      height: 60px;
+      width: 29.5%;
       font-size: 15pt;
     }
-    .btns{
-      margin-top: 10px;
-      height: 50px;
-      width: 58%;
-      font-size: 15pt;
+    .button{
+      border-radius: 40px;
+    }
+    .button:hover{
+      border-bottom-color: red;
+      color: red;
     }
     .sudoku{
+      margin-top: 20px;
       background-color: #fff;
       margin-left: 25%;
     }
@@ -49,12 +51,23 @@
     .main-row-1,.main-row-2,.main-row-3{
 
     }
+    .level{
+      margin-left: 29%;
+      margin-top: 10px;
+      color: #fff;
+    }
   </style>
 </head>
 <body>
     <div class="header">
        <h1 id="heading" class="text-center">SUDOKU</h1>
     </div>
+
+    <div class="level">
+        <strong>Select Level : <span id="level_show"></span></strong>
+        <input type="range" id="level" min="0" max="30" name="level" onchange="updateLevel();" style="width: 58%;">
+    </div>
+
     <div class="container">
        <div class="sudoku col-sm-6">
          <div class="main-row-1 row">
@@ -380,21 +393,34 @@
          </div>
        </div>
     </div>
+
     <script type="text/javascript">
+        function updateLevel(argument) {
+          sudokuLevel = document.getElementById('level').value;
+          document.getElementById('level_show').innerHTML= sudokuLevel;
+          generate_sudoku();
+       }
+
+        var arr=new Array(81);
         var mat = new Array(9);
         var tempmat = new Array(9);
         for (var i=0; i<9; i++) {
             mat[i]=new Array(9);
             tempmat[i]=new Array(9);
         }
-        generate_sudoku();
+    
+
+       var sudokuLevel = 15;
+       document.getElementById('level_show').innerHTML=sudokuLevel;
+       generate_sudoku();
     </script>
+
     <div class="buttons ">
-        <button class="btn btn-default" onclick="generate_sudoku()">Generate Sudoku</button>
-        <button class="btn btn-default" onclick="solve_sudoku()">Solve Sudoku</button>
-        <button class="btns btn-default" onclick="check_matrix()">Submit Solution</button>
+        <button class="btn btn-primary button" onclick="generate_sudoku()">Refresh Sudoku</button>
+        <button class="btn btn-primary button" onclick="check_matrix()">Submit Solution</button>
     </div>
 
+    
    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </body>
 </html>
