@@ -60,9 +60,9 @@ function check_matrix() {
             var count=0;
             for(var x=i;x<i+3;x++){
                 for(var y=j;y<j+3;y++){
-                    if(zero_arr[check_matrix[j][i]-1]==0){
+                    if(zero_arr[check_matrix[x][y]-1]==0){
                        count++;
-                       zero_arr[check_matrix[j][i]-1]=1;
+                       zero_arr[check_matrix[x][y]-1]=1;
                     }
                 }
             }
