@@ -1,2 +1,3 @@
-#SUDOKU
-https://kumarvimlesh.github.io/sudoku/
+#SUDOKU PUZZLE
+
+Check Here -> https://kumarvimlesh.github.io/sudoku/
